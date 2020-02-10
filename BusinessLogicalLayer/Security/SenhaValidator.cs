@@ -66,5 +66,11 @@ namespace BusinessLogicalLayer.Security
             return "";
         }
 
+        public static string TransferToHashPassword(string senha)
+        {
+            string hash = HashUtils.HashPassword(senha);
+            return hash;
+        }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using BusinessLogicalLayer.Security;
 using DataAccessLayer;
 using Entities;
+using Entities.ResultSets;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -28,7 +29,15 @@ namespace BusinessLogicalLayer
                 {
                     response.Data = db.Funcionarios.Where(f => f.Email == email && f.Senha == senha).ToList();
                 }
-                response.Sucesso = true;
+                if (response.Data.Count > 0)
+                {
+                    response.Sucesso = true;
+                }
+                else
+                {
+                    response.Sucesso = false;
+                    response.Erros.Add("Login ou senha inválidos.");
+                }
             }
             catch(Exception ex)
             {
@@ -68,13 +77,13 @@ namespace BusinessLogicalLayer
                     db.Entry<Funcionario>(funcionarioASerExcluido).State = System.Data.Entity.EntityState.Deleted;
                     db.SaveChanges();
                 }
+                response.Sucesso = true;
             }
             catch(Exception ex)
             {
                 response.Sucesso = false;
                 response.Erros.Add("Erro no banco de dados,contate o administrador.");
                 File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
-                return response;
             }
 
             return response;
@@ -82,6 +91,7 @@ namespace BusinessLogicalLayer
 
         public DataResponse<Funcionario> GetByID(int id)
         {
+            List<Funcionario> f = new List<Funcionario>();
             DataResponse<Funcionario> response = new DataResponse<Funcionario>();
 
             if (id <= 0)
@@ -95,7 +105,7 @@ namespace BusinessLogicalLayer
             {
                 using(LocadoraDbContext db = new LocadoraDbContext())
                 {
-                    response.Data.Add(db.Funcionarios.Find(id));
+                    f.Add(db.Funcionarios.Find(id));
                 }
                 response.Sucesso = true;
             }
@@ -105,19 +115,20 @@ namespace BusinessLogicalLayer
                 response.Erros.Add("Erro no banco de dados,contate o administrador.");
                 File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
             }
-
+            response.Data = f;
             return response;
         }
 
         public DataResponse<Funcionario> GetData()
         {
+            List<Funcionario> funcionarios = new List<Funcionario>();
             DataResponse<Funcionario> response = new DataResponse<Funcionario>();
 
             try
             {
                 using(LocadoraDbContext db = new LocadoraDbContext())
                 {
-                    response.Data = db.Funcionarios.ToList();
+                    funcionarios = db.Funcionarios.ToList();
                 }
                 response.Sucesso = true;
             }
@@ -127,8 +138,13 @@ namespace BusinessLogicalLayer
                 response.Erros.Add("Erro no banco de dados,contate o administrador.");
                 File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
             }
-
+            response.Data = funcionarios;
             return response;
+        }
+
+        public DataResponse<FuncionarioResultSet> GetFuncionarios()
+        {
+            throw new NotImplementedException();
         }
 
         public Response Insert(Funcionario item)

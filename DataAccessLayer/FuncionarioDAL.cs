@@ -1,4 +1,5 @@
 ﻿using Entities;
+using Entities.ResultSets;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -73,6 +74,11 @@ namespace DataAccessLayer
         }
 
         public DataResponse<Funcionario> GetData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public DataResponse<FuncionarioResultSet> GetFuncionarios()
         {
             throw new NotImplementedException();
         }

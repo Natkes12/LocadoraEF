@@ -47,6 +47,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.btnMostrarSenha2 = new System.Windows.Forms.Button();
+            this.btnDeletar = new System.Windows.Forms.Button();
+            this.btnAtualizar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -125,7 +127,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Location = new System.Drawing.Point(66, 457);
+            this.button1.Location = new System.Drawing.Point(64, 362);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(268, 87);
             this.button1.TabIndex = 9;
@@ -172,19 +174,21 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(881, 33);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(596, 527);
             this.dataGridView1.TabIndex = 14;
             // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.SystemColors.Info;
-            this.button2.Location = new System.Drawing.Point(508, 457);
+            this.button2.Location = new System.Drawing.Point(506, 362);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(268, 87);
             this.button2.TabIndex = 15;
@@ -230,11 +234,35 @@
             this.btnMostrarSenha2.UseVisualStyleBackColor = true;
             this.btnMostrarSenha2.Click += new System.EventHandler(this.btnMostrarSenha2_Click);
             // 
+            // btnDeletar
+            // 
+            this.btnDeletar.BackColor = System.Drawing.SystemColors.Info;
+            this.btnDeletar.Location = new System.Drawing.Point(506, 473);
+            this.btnDeletar.Name = "btnDeletar";
+            this.btnDeletar.Size = new System.Drawing.Size(268, 87);
+            this.btnDeletar.TabIndex = 21;
+            this.btnDeletar.Text = "Deletar";
+            this.btnDeletar.UseVisualStyleBackColor = false;
+            this.btnDeletar.Click += new System.EventHandler(this.btnDeletar_Click);
+            // 
+            // btnAtualizar
+            // 
+            this.btnAtualizar.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnAtualizar.Location = new System.Drawing.Point(64, 473);
+            this.btnAtualizar.Name = "btnAtualizar";
+            this.btnAtualizar.Size = new System.Drawing.Size(268, 87);
+            this.btnAtualizar.TabIndex = 20;
+            this.btnAtualizar.Text = "Atualizar";
+            this.btnAtualizar.UseVisualStyleBackColor = false;
+            this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
+            // 
             // FormFuncionario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1494, 584);
+            this.Controls.Add(this.btnDeletar);
+            this.Controls.Add(this.btnAtualizar);
             this.Controls.Add(this.btnMostrarSenha2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label7);
@@ -286,5 +314,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnMostrarSenha2;
+        private System.Windows.Forms.Button btnDeletar;
+        private System.Windows.Forms.Button btnAtualizar;
     }
 }

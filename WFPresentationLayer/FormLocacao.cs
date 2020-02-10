@@ -38,6 +38,7 @@ namespace WFPresentationLayer
            
         }
 
+        private BindingList<FilmeResultSet> listFilmesResultSetSelecionados = new BindingList<FilmeResultSet>();
         private BindingList<Filme> listFilmesSelecionados = new BindingList<Filme>();
 
         private void btnPesquisaFilme_Click(object sender, EventArgs e)
@@ -47,20 +48,21 @@ namespace WFPresentationLayer
             frm.ShowDialog();
             this.Show();
 
-            if (frm.FilmeSelecionado != null)
+            if (frm.FilmeResultSetSelecionado != null)
             {
-                foreach (Filme filme in listFilmesSelecionados)
+                foreach (FilmeResultSet filme in listFilmesResultSetSelecionados)
                 {
-                    if (filme.ID == frm.FilmeSelecionado.ID)
+                    if (filme.ID == frm.FilmeResultSetSelecionado.ID)
                     {
                         MessageBox.Show("Este filme já foi selecionado.");
                         return;
                     }
                 }
+                listFilmesResultSetSelecionados.Add(frm.FilmeResultSetSelecionado);
                 listFilmesSelecionados.Add(frm.FilmeSelecionado);
             }
 
-            this.dataGridView1.DataSource = listFilmesSelecionados;
+            this.dataGridView1.DataSource = listFilmesResultSetSelecionados;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -76,6 +78,11 @@ namespace WFPresentationLayer
             if (response.Sucesso)
             {
                 MessageBox.Show("Locação efetuada com sucesso!");
+                this.dataGridView1.DataSource = null;
+                chkFoiPago.Checked = false;
+                txtClienteID.Clear();
+                txtClienteNome.Clear();
+                txtClienteCPF.Clear();
             }
             else
             {

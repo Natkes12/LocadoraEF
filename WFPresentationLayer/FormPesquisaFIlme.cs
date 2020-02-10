@@ -23,16 +23,19 @@ namespace WFPresentationLayer
         }
 
         public Filme FilmeSelecionado { get; private set; }
+        public FilmeResultSet FilmeResultSetSelecionado { get; private set; }
 
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            this.FilmeResultSetSelecionado = (FilmeResultSet)this.dataGridView1.SelectedRows[0].DataBoundItem;
+            this.dataGridView1.DataSource = new FilmeBLL().GetData().Data;
             this.FilmeSelecionado = (Filme)this.dataGridView1.SelectedRows[0].DataBoundItem;
             this.Close();
         }
 
         private void FormPesquisaFIlme_Load(object sender, EventArgs e)
         {
-            this.dataGridView1.DataSource = new FilmeBLL().GetData().Data;
+            this.dataGridView1.DataSource = new FilmeBLL().GetFilmes().Data;
         }
     }
 }
