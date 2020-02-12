@@ -12,8 +12,6 @@ namespace BusinessLogicalLayer
 {
     public class LocacaoBLL : ILocacaoService
     {
-        private LocacaoDAL locacaoDAL = new LocacaoDAL();
-
         public Response EfetuarLocacao(Locacao locacao)
         {
             Response response = Validate(locacao);

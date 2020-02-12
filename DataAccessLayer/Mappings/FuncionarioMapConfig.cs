@@ -18,9 +18,9 @@ namespace DataAccessLayer.Mappings
             this.Property(f => f.Email).HasMaxLength(40);
             this.Property(f => f.Senha).HasMaxLength(30);
             this.Property(f => f.Telefone).HasMaxLength(18);
-            //this.HasIndex(f => f.Email).IsUnique();
-            //this.HasIndex(f => f.CPF).IsUnique();
-            //this.HasIndex(f => f.Telefone).IsUnique();
+            this.HasIndex(f => f.Email).IsUnique(true);
+            this.HasIndex(f => f.CPF).IsUnique(true);
+            this.HasIndex(f => f.Telefone).IsUnique(true);
         }
     }
 }

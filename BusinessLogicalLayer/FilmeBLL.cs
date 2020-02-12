@@ -13,8 +13,6 @@ namespace BusinessLogicalLayer
 {
     public class FilmeBLL : IEntityCRUD<Filme>, IFilmeService
     {
-        private FilmeDAL filmeDAL = new FilmeDAL();
-
         public Response Delete(int id)
         {
             Response response = new Response();

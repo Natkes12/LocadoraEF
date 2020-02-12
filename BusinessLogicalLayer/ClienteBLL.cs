@@ -16,7 +16,6 @@ namespace BusinessLogicalLayer
     /// </summary>
     public class ClienteBLL : IEntityCRUD<Cliente>
     {
-        private ClienteDAL dal = new ClienteDAL();
         public Response Insert(Cliente item)
         {
             Response response = new Response();

@@ -23,7 +23,7 @@ namespace WFPresentationLayer
 
         private void FormFuncionario_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = funcionarioBLL.GetData().Data;
+            dataGridView1.DataSource = funcionarioBLL.GetFuncionarios().Data;
         }
 
 

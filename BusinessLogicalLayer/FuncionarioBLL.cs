@@ -13,8 +13,6 @@ namespace BusinessLogicalLayer
 {
     public class FuncionarioBLL : IEntityCRUD<Funcionario>, IFuncionarioService
     {
-        private FuncionarioDAL funcionarioDAL = new FuncionarioDAL();
-
         public DataResponse<Funcionario> Autenticar(string email, string senha)
         {
             //TODO: Validar email e Senha!
@@ -144,7 +142,26 @@ namespace BusinessLogicalLayer
 
         public DataResponse<FuncionarioResultSet> GetFuncionarios()
         {
-            throw new NotImplementedException();
+            DataResponse<FuncionarioResultSet> response = new Entities.DataResponse<FuncionarioResultSet>();
+            List<FuncionarioResultSet> funcionarios = new List<FuncionarioResultSet>();
+
+            try
+            {
+                using (LocadoraDbContext db = new LocadoraDbContext())
+                {
+                    funcionarios = db.Funcionarios.Select(f => new FuncionarioResultSet(){ ID = f.ID, Nome = f.Nome, CPF = f.CPF, DataNascimento = f.DataNascimento, Email = f.Email, Telefone = f.Telefone, EhAtivo = f.EhAtivo }).ToList();
+                }
+                response.Sucesso = true;
+            }
+            catch (Exception ex)
+            {
+                response.Sucesso = false;
+                response.Erros.Add("Erro no banco de dados,contate o administrador.");
+                File.WriteAllText("log.txt", ex.Message + " - " + ex.StackTrace);
+            }
+            response.Data = funcionarios;
+            return response;
+
         }
 
         public Response Insert(Funcionario item)

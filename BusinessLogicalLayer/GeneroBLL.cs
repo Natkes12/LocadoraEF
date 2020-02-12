@@ -16,9 +16,6 @@ namespace BusinessLogicalLayer
     /// </summary>
     public class GeneroBLL : IEntityCRUD<Genero>
     {
-
-        private GeneroDAL dal = new GeneroDAL();
-
         public Response Insert(Genero item)
         {
             Response response = Validate(item);

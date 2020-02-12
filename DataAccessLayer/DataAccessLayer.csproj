@@ -51,11 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClienteDAL.cs" />
-    <Compile Include="FilmeDAL.cs" />
-    <Compile Include="FuncionarioDAL.cs" />
-    <Compile Include="GeneroDAL.cs" />
-    <Compile Include="LocacaoDAL.cs" />
     <Compile Include="LocadoraDbContext.cs" />
     <Compile Include="LocadoraTesteStrategy.cs" />
     <Compile Include="Mappings\ClienteMapConfig.cs" />
